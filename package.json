@@ -1,16 +1,19 @@
 {
   "name": "@luvcode/container",
   "description": "Create monorepo using nextjs, reactjs, pnpm, turbo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Manh Pham",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
+    "reset": "pnpm clean && pnpm install",
+    "clean": "rm -rf node_modules && pnpm -r clean",
+    "web:build": "turbo run build --filter=web",
+    "web:dev": "turbo run dev --filter=web",
     "dev": "turbo run dev",
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "eslint": "7.32.0",
+    "eslint": "8.41.0",
     "turbo": "latest"
   },
   "packageManager": "pnpm@8.5.1"
