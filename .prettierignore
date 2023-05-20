@@ -1,0 +1,33 @@
+# Node artifact files
+node_modules/
+**/node_modules/
+**/out
+dist/
+**/dist/
+**/build
+**/.idea/
+.vscode
+**/debug.log
+**/.env
+*.image
+docker-images
+pnpm-lock.yaml
+pnpm-workspace.yaml
+**/public
+temp/
+
+# Nextjs
+**/.next/**
+
+# Log files
+*.log
+
+# Maven
+target/
+dist/
+
+# JetBrains IDE
+.idea/
+
+# Unit test reports
+TEST*.xml

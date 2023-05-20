@@ -1,0 +1,12 @@
+'*.{md,json}': prettier --write --cache --ignore-unknown
+'*.@(js|ts|tsx)':
+  # prettier conflict with eslint: no-mixed-operators - https://github.com/prettier/prettier/issues/187
+# - prettier --write --cache --ignore-unknown
+  - eslint --fix
+  # stylelint has issue `✖ stylelint --fix failed without output (ENOENT).`
+# - stylelint --fix
+  # tsc-files not support pnpm yet - https://github.com/gustavopch/tsc-files/issues/41
+# '*.ts?(x)': tsc-files --pretty --noEmit
+'*.ts?(x)': lint-staged-tsc
+
+
