@@ -1,0 +1,14 @@
+{
+  "extends": "@luvcod/tsconfig/tsconfig.vite.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "noFallthroughCasesInSwitch": true,
+    "preserveSymlinks": true,
+    "types": ["node", "vite/client"]
+  },
+  "include": ["vite.config.ts"]
+}

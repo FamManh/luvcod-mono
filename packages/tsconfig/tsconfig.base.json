@@ -1,0 +1,43 @@
+{
+  // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
+  "compilerOptions": {
+    // https://www.typescriptlang.org/tsconfig#composite
+    "composite": false,
+    // output .d.ts declaration files for consumers
+    // https://www.typescriptlang.org/tsconfig#declaration
+    "declaration": true,
+    // https://www.typescriptlang.org/tsconfig#declarationMap
+    "declarationMap": true,
+    // interop between ESM and CJS modules. Recommended by TS
+    // https://www.typescriptlang.org/tsconfig#esModuleInterop
+    "esModuleInterop": true,
+    // error out if import and file system have a casing mismatch. Recommended by TS
+    // https://www.typescriptlang.org/tsconfig#forceConsistentCasingInFileNames
+    "forceConsistentCasingInFileNames": true,
+    // https://www.typescriptlang.org/tsconfig#inlineSources
+    "inlineSources": false,
+    // https://www.typescriptlang.org/tsconfig#isolatedModules
+    "isolatedModules": true,
+    // use Node's module resolution algorithm, instead of the legacy TS one
+    // https://www.typescriptlang.org/tsconfig#moduleResolution
+    "moduleResolution": "node",
+    // noUnused* overlap with @typescript-eslint/no-unused-vars, can disable if duplicative
+    // https://www.typescriptlang.org/tsconfig#noUnusedLocals
+    "noUnusedLocals": false,
+    // https://www.typescriptlang.org/tsconfig#noUnusedParameters
+    "noUnusedParameters": false,
+    // https://www.typescriptlang.org/tsconfig#preserveWatchOutput
+    "preserveWatchOutput": true,
+    // significant perf increase by skipping checking .d.ts files, particularly those in node_modules. Recommended by TS
+    // https://www.typescriptlang.org/tsconfig#skipLibCheck
+    "skipLibCheck": true,
+    // stricter type-checking for stronger correctness. Recommended by TS
+    // https://www.typescriptlang.org/tsconfig#strict
+    "strict": true,
+    "incremental": false,
+    "noEmit": false
+  },
+  "exclude": ["node_modules"]
+}
