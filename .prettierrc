@@ -5,7 +5,6 @@
   "printWidth": 180,
   "trailingComma": "all",
   "bracketSpacing": true,
-  "jsxBracketSameLine": false,
   "endOfLine": "lf",
   "overrides": [
     {
