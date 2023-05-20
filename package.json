@@ -9,6 +9,10 @@
     "clean": "rm -rf node_modules && pnpm -r clean",
     "web:build": "turbo run build --filter=web",
     "web:dev": "turbo run dev --filter=web",
+    "web:start": "turbo run start --filter=web",
+    "admin:build": "turbo run build --filter=admin",
+    "admin:dev": "turbo run dev --filter=admin",
+    "admin:start": "turbo run start --filter=admin",
     "dev": "turbo run dev",
     "lint": "turbo run lint"
   },
