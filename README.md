@@ -1,85 +1,90 @@
-# Turborepo starter with npm
+# Luvcod monorepo
 
-This is an official starter Turborepo.
+This repository is setup in a monorepo structure and introduces some new build tools. Notable [pnpm](https://pnpm.io/) as the package manager and [Turborepo](https://turborepo.org/) as a build tool. The repository splits the structure into the following:
 
-## What's inside?
+- **apps** - This is where end user web applications live
+- **packages** - This is where anything reusable lives such as component libraries, utility libraries
 
-This Turborepo uses [npm](https://www.npmjs.com/) as a packages manager. It includes the following packages/apps:
+> Getting Started: You'll need to ensure you install the key tools that we're using before you can use this repository. Here are links to the installation guides:
+> pnpm - https://pnpm.io/installation
+> Turborepo - https://turborepo.org/docs/getting-started#install-turbo
 
-### Apps and Packages
+# Working within this Repository
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+We'll detail some of the things you may need to know here when developing against this repository.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## Running this project
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-## Setup
-
-This repository can be used by running `npx create-turbo@latest`, and selecting `npm` in the terminal prompt,
-or you can also download this folder like all the other examples with:
-
-```sh
-npx degit vercel/turbo/examples/with-npm with-npm
-cd with-npm
-npm install
-git init . && git add . && git commit -m "Init"
-```
-
-### Build
-
-To build all apps and packages, run the following command:
+Running the repository is fairly straight forward, although we're going to use `pnpm` instead of npm or yarn. Therefore once you have cloned the repository, navigate to the root project directory and run:
 
 ```
-cd my-turborepo
-npm run build
+# install packages
+pnpm install
+
+# intall husky
+pnpm prepare
+
+# run web app in development mode
+pnpm web:dev
+
+# run admin app in development mode
+pnpm admin:dev
 ```
 
-### Develop
+This will install the dependencies, and start the web applications, automatically triggering any dependent builds in the process.
 
-To develop all apps and packages, run the following command:
+## Useful Scripts
 
-```
-cd my-turborepo
-npm run dev
-```
+There are a number of useful scripts provided at the root of the project. The aim is that you should rarely need to navigate to a sub-package to run a particular script. There is also a naming convention to make this easier to remember:
 
-### Remote Caching
+- `test`, `build`, `lint`, `cypress` (Run against all packages)
+- `testp`, `buildp`, `lintp`, `cypressp`, `storybookp` (Run against a single package - **p** suffix)
+- `testw`, `buildw`, `dev`, `cypressw`, `storybookw` (Run against a single in watch-mode - **w** suffix)
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Other useful scripts:
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+- `clean` - Remove node_modules, build output and Turborepo caches
+- `refresh` - Same as clean, except automatically install all dependencies again afterwards
+- `graph` - Generate a dependency graph for the build command and display in a browser
 
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
+If you need to manually run a script against a single package you can still do this using `pnpm` by doing:
 
 ```
-npx turbo link
+turbo run <script-name> --filter=<package|app>
 ```
 
-## Useful Links
+## Installing a package as a dependancy
 
-Learn more about the power of Turborepo:
+To add a package as a dependency within `pnpm`. Simply run `pnpm add @iw/title` for example to add the title package.
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+```
+cd apps/MyApp
+pnpm add MyLibrary
+```
+
+## Adding a Package
+
+Adding a new package varies slightly depending on the type of package that you want to add.
+
+### Adding a React Application
+
+Adding a react component library can be done using `create vite` although this needs to be done slightly differently due to the fact we're using both `pnpm` and a monorepo.
+
+> Use the script featured below, replacing `<MyLibrary>` with the name of your component library
+
+```
+cd apps
+pnpm create vite <MyApp --template react-ts
+cd ..
+pnpm install
+```
+
+Once you've done this you should then additional configure the following to work correctly in the monorepo:
+
+- [TypeScript Config]()
+- [ESLint Config]()
+- [Package Scripts]()
+
+### Adding a React Component Library
+
+See more: [Create vite lib](https://vitejs.dev/guide/build.html#library-mode)
